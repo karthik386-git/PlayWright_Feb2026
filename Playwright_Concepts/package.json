@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
 
-    "QA": "npx playwright test playwrightAssignment.spec.ts --project QA",
-    "Stage": "npx playwright test browserLaunch.spec.ts --project Stage",
-    "Production": "npx playwright test browserLaunch.spec.ts --project Production"
+    "QA": "npx playwright test openBrowser.spec.ts --project QA",
+    "Stage": "npx playwright test openBrowser.spec.ts --project Stage",
+    "Production": "npx playwright test openBrowser.spec.ts --project Production"
 
   },
   "keywords": [],

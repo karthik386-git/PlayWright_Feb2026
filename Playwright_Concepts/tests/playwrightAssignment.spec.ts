@@ -12,9 +12,11 @@ test("Assignment", async({page}) => {
    await buttonEle.click()
    await page.waitForTimeout(5000)
 
-   const gotoHomepageEle = page.locator("bst_btn1")
+   //# for id locator
+   //. for class locator
+   const gotoHomepageEle = page.locator("#bst_btn1").first()
    await gotoHomepageEle.click()
-   await page.waitForTimeout(5000)  
+   //await page.waitForTimeout(2000)  
 
    const currentTitle = await page.title()
    console.log("Current title");
