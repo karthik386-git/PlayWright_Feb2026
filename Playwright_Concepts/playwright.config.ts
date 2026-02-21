@@ -35,11 +35,7 @@ export default defineConfig({
     //headless: false,
     
     //Maximize the browser window
-    viewport: null,
-    launchOptions: {
-      args: ['--start-maximized'],
-    }
-
+    
   },
 
   /* Configure projects for major browsers */
@@ -49,7 +45,15 @@ export default defineConfig({
     {
       name: 'QA',
       use: { ...devices['Desktop Chrome'], 
-            headless: false },
+           headless: false,
+           viewport: null,
+           deviceScaleFactor: undefined,
+           launchOptions: {
+        args: ['--start-maximized'],
+      },
+      
+      },
+
     },
 
     {

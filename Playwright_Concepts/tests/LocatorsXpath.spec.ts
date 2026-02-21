@@ -14,5 +14,4 @@ test("Xpath Loactor", async({page}) =>{
     await gotoHomepageEle.click()
     await page.waitForTimeout(2000) 
 
-
 })
