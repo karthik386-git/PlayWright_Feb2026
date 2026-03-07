@@ -6,7 +6,7 @@ let name ="Karthik"
 let names = ['Bala','Karthik','Suresh','Ramesh','Kumar',22,true]
 console.log(names); 
 
-//type of array is object
+// to find the type of array is object - typeof
 console.log(typeof(names));
 
 //to get data from array we need to use index number
