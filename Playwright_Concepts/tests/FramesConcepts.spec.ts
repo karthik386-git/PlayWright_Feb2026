@@ -24,18 +24,24 @@ test("Frames Concept test", async({page}) =>{
 
 
     //NESTED FRAMES - Assignment
-    const frame1 = page.frameLocator("#bst_frame2")
-    const frame2 = page.frameLocator("bst_frame3")
-    const inputEle1 = frame2.getByPlaceholder("Your name here")
+    const frame2 = page.frameLocator("#bst_frame2")
+    const frame3 = frame2.frameLocator("#bst_frame3")
+    const inputEle1 = frame3.getByPlaceholder("Your name here")
     await inputEle1.fill("Karthik")
+    await page.waitForTimeout(5000)
+
     
-    const submitButtonEle1 = frame2.getByRole("button", {name: "submit"})
+    const submitButtonEle1 = frame3.getByRole("button", {name: "submit"})
     await submitButtonEle1.click()
     await page.waitForTimeout(5000)
 
-    const userNameEle = frame2.locator("#UsernameInput_message__Befhi")
+    const userNameEle = frame2.locator("//p[text()='Welcome, Karthik!']")
 
-    if(await userNameEle.textContent() == "Welcome, Karthik!")
+    await expect(userNameEle).toBeVisible();
+    
+    const text = await userNameEle.textContent();
+
+    if(text?.trim() === "Welcome, Karthik!")
         {
         console.log("User name is displayed in the second frame")
     }
@@ -45,9 +51,10 @@ test("Frames Concept test", async({page}) =>{
 
     //multiple frames handled via for loop - page.frames() - mostly we won't use this approach because it is not reliable and it is not recommended by Playwright team. 
     // We will use frame locators instead of this approach.
-    const frames = page.frames()
-    for(const fr of frames){
-        fr.locator("#id").fill("SK")
-    }
+    
+    // const frames = page.frames()
+    // for(const fr of frames){
+    //     fr.locator("#id").fill("SK")
+    // }
 
 })
