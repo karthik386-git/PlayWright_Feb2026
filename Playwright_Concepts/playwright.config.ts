@@ -15,27 +15,31 @@ export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
+  
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
+  
   workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    /* Base URL to use in actions like `await page.goto('')`. */
-    
-    baseURL: 'https://playground.bsparksoftwaretechnologies.com',
-    
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+  reporter: 'html',
+  /* Shared settings for all the projects below.*/
+  use: {
+     baseURL: 'https://playground.bsparksoftwaretechnologies.com',
     trace: 'on-first-retry',
-    //headless: false,
+
+    navigationTimeout: 60 * 1000,
+    actionTimeout: 30 * 1000,
+
     
-    //Maximize the browser window
-    
+  },
+//Default time out: Playwright during execution if the test case fails, below timout starts wait
+  timeout: 60 * 1000,
+  //If condition doesn't match the below wait will execute.
+  //If condition matches with the actual data and expected data the below wait will not be executed
+  expect:
+  {
+    timeout: 10 * 1000
   },
 
   /* Configure projects for major browsers */
